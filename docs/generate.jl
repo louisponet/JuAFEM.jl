@@ -21,7 +21,7 @@ function generate(file)
             """
 
             *This page was rendered automatically based on
-            [`$(name).jl`](https://github.com/KristofferC/JuAFEM.jl/blob/docs/examples/$(name).jl)*
+            [`$(name).jl`](https://github.com/KristofferC/JuAFEM.jl/blob/master/docs/src/examples/$(name).jl)*
             """)
     end
     return "examples/$(name).md"

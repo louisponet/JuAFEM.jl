@@ -1,35 +1,14 @@
 ```@meta
 CurrentModule = JuAFEM
-DocTestSetup = quote
-    using JuAFEM
-end
+DocTestSetup = :(using JuAFEM)
 ```
 
-# Utilities
+# FEValues
 
-```@index
-Pages = ["utility_functions.md"]
-```
-
-## QuadratureRule
+## [CellValues](@id reference-cellvalues)
 
 ```@docs
-getpoints
-getweights
-```
-
-## Interpolation
-
-```@docs
-getnbasefunctions
-getdim
-getrefshape
-getorder
-```
-
-## CellValues
-
-```@docs
+CellValues
 reinit!
 getnquadpoints
 getdetJdV
@@ -46,26 +25,12 @@ function_divergence
 spatial_coordinate
 ```
 
-## FaceValues
+## [FaceValues](@id reference-facevalues)
 
 All of the methods for [`CellValues`](@ref) apply for `FaceValues` as well.
 In addition, there are some methods that are unique for `FaecValues`:
 
 ```@docs
+FaceValues
 getcurrentface
-```
-
-## Assembling
-
-```@docs
-start_assemble
-assemble!
-end_assemble
-```
-
-
-## VTK
-
-```@docs
-vtk_grid
 ```

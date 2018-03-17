@@ -9,17 +9,32 @@ GENERATEDEXAMPLES = generate.(joinpath.(EXAMPLEDIR, EXAMPLES))
 makedocs(
     format = :html,
     sitename = "JuAFEM.jl",
-    doctest = true,
+    doctest = false,
     strict = VERSION.minor == 6 && sizeof(Int) == 8, # only strict mode on 0.6 and Int64
     pages = Any[
         "Home" => "index.md",
-        "man/fe_intro.md",
-        "man/getting_started.md",
-        "Library" => ["lib/maintypes.md",
-                      "lib/utility_functions.md"],
-        "Examples" => GENERATEDEXAMPLES
+        "manual/fe_intro.md",
+        "Manual" => [
+            "manual/cell_integration.md",
+            "manual/degrees_of_freedom.md",
+            "manual/boundary_conditions.md",
+            "manual/assembly.md",
+            "manual/grid.md",
+            "manual/export.md"
+            ],
+        "Examples" => GENERATEDEXAMPLES,
+        "API Reference" => [
+            "reference/quadrature.md",
+            "reference/interpolations.md",
+            "reference/fevalues.md",
+            "reference/dofhandler.md",
+            "reference/boundary_conditions.md",
+            "reference/assembly.md",
+            "reference/grid.md",
+            "reference/export.md"
+            ]
         ]
-        )
+    )
 
 # Deploy built documentation from Travis.
 deploydocs(
