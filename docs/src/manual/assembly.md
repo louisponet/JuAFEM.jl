@@ -13,11 +13,11 @@ into the global `K` and `f` respectively. These should be assembled into
 the row/column which corresponds to the degrees of freedom for the cell:
 
 ```julia
-K[edof, edof] += ke
-f[edof]       += fe
+K[celldofs, celldofs] += ke
+f[celldofs]       += fe
 ```
 
-where `edof` is the vector containing the degrees of freedom for the cell.
+where `celldofs` is the vector containing the degrees of freedom for the cell.
 The method above is very inefficient -- it is especially costly to index
 into the sparse matrix `K` directly. Therefore we will instead use an
 `Assembler` that will help with the assembling of both the global stiffness
@@ -43,7 +43,7 @@ For this purpose there is a [`create_symmetric_sparsity_pattern`](@ref) function
 will only create the upper half of the matrix, and return a `Symmetric` wrapped
 `SparseMatrixCSC`.
 
-Given a `DofHandler` called `dh` we can obtain the (symmetric) sparsity pattern as
+Given a `DofHandler` `dh` we can obtain the (symmetric) sparsity pattern as
 
 ```julia
 K = create_sparsity_pattern(dh)
@@ -56,4 +56,35 @@ assembles efficiently into the matrix, without modifying the internal representa
 ## `Assembler`
 
 Assembling efficiently into the sparse matrix requires some extra workspace.
-This workspace is allocated in an `Assembler`.
+This workspace is allocated in an `Assembler`. [`start_assemble`](@ref) is
+used to create an `Assembler`:
+
+```julia
+A = start_assemble(K)
+A = start_assemble(K, f)
+```
+
+where `K` is the global stiffness matrix, and `f` the global force vector.
+It is optional to give the force vector to the assembler -- sometimes
+there is no need to assemble a global force vector.
+
+fds
+
+```julia
+assemble!(A, celldofs, ke)
+assemble!(A, celldofs, ke, fe)
+```
+
+
+To give a more
+
+```julia
+K = create_sparsity_pattern(dh)
+f = zeros(ndofs(dh))
+A = start_assemble(K, f)
+
+for cell in CellIterator(dh)
+    ke, fe = ...
+    assemble!(A, celldofs(cell), ke, fe)
+end
+```
