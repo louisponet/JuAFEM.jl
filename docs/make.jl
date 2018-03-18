@@ -17,8 +17,8 @@ makedocs(
         "Manual" => [
             "manual/cell_integration.md",
             "manual/degrees_of_freedom.md",
-            "manual/boundary_conditions.md",
             "manual/assembly.md",
+            "manual/boundary_conditions.md",
             "manual/grid.md",
             "manual/export.md"
             ],
@@ -28,8 +28,8 @@ makedocs(
             "reference/interpolations.md",
             "reference/fevalues.md",
             "reference/dofhandler.md",
-            "reference/boundary_conditions.md",
             "reference/assembly.md",
+            "reference/boundary_conditions.md",
             "reference/grid.md",
             "reference/export.md"
             ]

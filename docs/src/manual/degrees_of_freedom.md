@@ -6,5 +6,3 @@ DocTestSetup = :(using JuAFEM)
 bla bla bla
 
 ## Fields
-
-## Sparsity Pattern

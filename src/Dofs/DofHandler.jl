@@ -232,7 +232,26 @@ end
 
 # Creates a sparsity pattern from the dofs in a DofHandler.
 # Returns a sparse matrix with the correct storage pattern.
+"""
+    create_sparsity_pattern(dh::DofHandler)
+
+Create the sparsity pattern corresponding to the degree of freedom
+numbering in the [`DofHandler`](@ref). Return a `SparseMatrixCSC`
+with stored values in the correct places.
+
+See the [`Sparsity Pattern`](@ref) section of the manual.
+"""
 @inline create_sparsity_pattern(dh::DofHandler) = _create_sparsity_pattern(dh, false)
+
+"""
+    create_symmetric_sparsity_pattern(dh::DofHandler)
+
+Create the symmetric sparsity pattern corresponding to the degree of freedom
+numbering in the [`DofHandler`](@ref) by only considering the upper
+triangle of the matrix. Return a `Symmetric{SparseMatrixCSC}`.
+
+See the [`Sparsity Pattern`](@ref) section of the manual.
+"""
 @inline create_symmetric_sparsity_pattern(dh::DofHandler) = Symmetric(_create_sparsity_pattern(dh, true), :U)
 
 function _create_sparsity_pattern(dh::DofHandler, sym::Bool)
