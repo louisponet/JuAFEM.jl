@@ -14,7 +14,7 @@ the row/column which corresponds to the degrees of freedom for the cell:
 
 ```julia
 K[celldofs, celldofs] += ke
-f[celldofs]       += fe
+f[celldofs]           += fe
 ```
 
 where `celldofs` is the vector containing the degrees of freedom for the cell.

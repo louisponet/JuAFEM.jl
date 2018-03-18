@@ -2,7 +2,7 @@ using Documenter, JuAFEM
 
 include("generate.jl")
 EXAMPLEDIR = joinpath(@__DIR__, "src", "examples")
-EXAMPLES = ["heat_equation.jl",]
+EXAMPLES = ["heat_equation.jl", "cantilever.jl"]
 GENERATEDEXAMPLES = generate.(joinpath.(EXAMPLEDIR, EXAMPLES))
 
 # Build documentation.
@@ -10,7 +10,8 @@ makedocs(
     format = :html,
     sitename = "JuAFEM.jl",
     doctest = false,
-    strict = VERSION.minor == 6 && sizeof(Int) == 8, # only strict mode on 0.6 and Int64
+    # strict = VERSION.minor == 6 && sizeof(Int) == 8, # only strict mode on 0.6 and Int64
+    strict = false,
     pages = Any[
         "Home" => "index.md",
         "manual/fe_intro.md",
